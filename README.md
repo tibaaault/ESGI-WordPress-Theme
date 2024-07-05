@@ -6,6 +6,7 @@ Creation of a theme WordPress
 - 🌐 **Creation of categories**
 - 🔄 **Creation of articles (movies)**
 - 📷 **Showing your articles by categories**
+-    **Scheduler of showtime**
 
 ## How to Run the Project ▶️
 
