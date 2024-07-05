@@ -3,7 +3,7 @@
 Plugin Name: Cinema Schedules
 Description: Gérer les séances des films
 Version: 1.0
-Author: Thibault Roelstrate
+Author: Thibault ESGI IW3
 */
 
 define('CINEMA_SCHEDULES_PLUGIN_DIR', plugin_dir_path(__FILE__));
@@ -118,7 +118,8 @@ register_activation_hook(__FILE__, 'cinema_create_schedule_table');
 
 
 add_action('admin_post_save_cinema_schedules', 'save_cinema_schedules');
-function save_cinema_schedules() {
+function save_cinema_schedules()
+{
     global $wpdb;
 
     if (!current_user_can('manage_options')) {
@@ -186,7 +187,8 @@ function save_cinema_schedules() {
 
 
 
-function cinema_get_saved_schedules() {
+function cinema_get_saved_schedules()
+{
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'cinema_schedules';
