@@ -13,14 +13,13 @@
                 echo ', ';
             }
         }
-        '</p>';
+        echo '</p>';
     }
     ?>
     <div class="d-flex" style="height: 50px;"></div>
     <div class="col-xl-9 bg-light mx-auto rounded rounded-5 px-3">
         <div class="d-flex" style="height: 50px;"></div>
         <?php
-
         if (have_posts()) :
             while (have_posts()) : the_post(); ?>
                 <h1 class="single-movie-title text-center"><?php the_title(); ?></h1>
@@ -46,7 +45,9 @@
                         <?php endif;
                     } else { ?>
                         <p><strong>Bande-annonce :</strong> Non disponible</p>
-                    <?php } ?>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <hr>
                 <div class="row mx-auto">
@@ -74,6 +75,31 @@
                                     ?>
                             </p>
                         </div>
+                        <div class="col-xl-10 col-sm mx-auto">
+                            <h3><u>Horaires des Séances</u></h3>
+                            <?php
+                            global $wpdb;
+                            $movie_id = get_the_ID();
+                            $table_name = $wpdb->prefix . 'cinema_schedules';
+
+                            $query = $wpdb->prepare(
+                                "SELECT * FROM $table_name WHERE movie_id = %d",
+                                $movie_id
+                            );
+
+                            $schedules = $wpdb->get_results($query);
+
+                            if ($schedules) {
+                                echo '<ul>';
+                                foreach ($schedules as $schedule) {
+                                    echo '<li>' . esc_html($schedule->schedule_time) . '</li>';
+                                }
+                                echo '</ul>';
+                            } else {
+                                echo '<p>Aucun horaire disponible pour le moment.</p>';
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -92,5 +118,5 @@
 
 </div>
 <?php
- get_footer(); 
+get_footer();
 ?>

@@ -10,6 +10,7 @@ function cinema_theme_enqueue_assets() {
 
     // Enqueue main stylesheet
     wp_enqueue_style('main-styles', get_stylesheet_uri());
+    
 
     // Enqueue custom script
     wp_enqueue_script('custom-script', get_template_directory_uri() . '/js/custom.js', array('jquery'), null, true);
@@ -110,3 +111,4 @@ function set_category_banner() {
     }
 }
 add_action('wp_head', 'set_category_banner');
+
