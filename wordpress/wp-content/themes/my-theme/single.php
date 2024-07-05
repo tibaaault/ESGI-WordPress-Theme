@@ -92,6 +92,7 @@
                             if ($schedules) {
                                 echo '<ul>';
                                 foreach ($schedules as $schedule) {
+                                    $schedule->schedule_time = str_replace(':', 'h', $schedule->schedule_time);
                                     echo '<li>' . esc_html($schedule->schedule_time) . '</li>';
                                 }
                                 echo '</ul>';
